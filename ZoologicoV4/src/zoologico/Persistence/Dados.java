@@ -18,16 +18,23 @@ import zoologico.Model.Lobo;
 import zoologico.Model.Mamifero;
 
 /**
- *
+ * Classe de Acesso à Dados reponsável por salvar e recuperar dados de arquivos texto
  * @author diego
  */
 public class Dados {
     private String nomeArquivo;
-    
+    /**
+     * Construtor da classe Dados que inicializa o nome do arquivo a ser lido/modificado
+     */
     public Dados(){
         nomeArquivo = "animais.txt";
     }
-    
+    /**
+     * Método que recebe um animal e transforma seus dados para uma string que pode ser escrita
+     * em arquivo texto
+     * @param animal Animal a ser convertido
+     * @return string representando uma linha com os dados a serem salvos no arquivo texto
+     */
     private String animalToString(Animal animal){
         String aux = "";
         if(animal instanceof Lobo){
@@ -51,7 +58,10 @@ public class Dados {
         aux += animal.getNome()+"\n";
         return aux;
     }
-    
+    /**
+     * Método que recebe um arrayList de animais e salva-os no arquivo texto
+     * @param animais ArrayList com os animais a serem salvos
+     */
     public void salvarDados(ArrayList<Animal> animais){
         try{
             FileWriter arquivo = new FileWriter(nomeArquivo);
@@ -65,7 +75,11 @@ public class Dados {
             
         }
     }
-    
+    /**
+     * Método que recebe um vetor de string e transforma-a em um objeto animal
+     * @param termos String com os dados lidos do arquivo texto
+     * @return Objeto animal criado
+     */
     private Animal instanciarAnimais(String[] termos){
         Animal animal = null;
         if(termos[0].equals("1")){
@@ -85,7 +99,10 @@ public class Dados {
         }
         return animal;
     }
-    
+    /**
+     * Método que carrega todos os animais salvos em arquivo texto em um ArrayList
+     * @return ArrayList com todos os animais recuperados
+     */
     public ArrayList<Animal> carregarDados(){
         ArrayList<Animal> animais = new ArrayList<Animal>();
         try{

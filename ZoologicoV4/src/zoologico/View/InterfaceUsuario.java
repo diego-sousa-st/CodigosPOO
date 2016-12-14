@@ -9,13 +9,15 @@ import zoologico.Controller.Zoologico;
 import java.util.Scanner;
 
 /**
- *
+ * Classe de Interface com o Usuário responsável por fazer a interação com o usuário através da linha 
+ * de comando
+ * 
  * @author diego
  */
 public class InterfaceUsuario {
     private Zoologico zoologico;
     /**
-     * Construtor da classe InterfaceUsuario
+     * Construtor da classe InterfaceUsuario que cria um objeto Zoologico do Pacote Controller
      */
     public InterfaceUsuario(){
         zoologico = new Zoologico();
@@ -73,7 +75,7 @@ public class InterfaceUsuario {
         System.out.println(zoologico.listarNomesEspecies());
     }
     /**
-     * Método que emite o som de um animal a partir de um nome
+     * Método que exibe o som de um animal a partir de um nome
      */
     private void emitirSom(){
         String nome = lerNome();
@@ -87,7 +89,15 @@ public class InterfaceUsuario {
         System.out.println(zoologico.exibirDadosAnimal(nome));
     }
     /**
-     * Método que executa o loop de interação com o usuário
+     * Método executado quando o usuário for sair do sistema, no qual o zoologico salva os dados
+     */
+    private void sair(){
+        zoologico.salvarDados();
+    }
+    /**
+     * Método que executa o loop de interação com o usuário disponibilizando 5 opcoes: cadastrar animal,
+     * listar animais, emitir som de um determinado animal, exibir dados de um determinado animal,
+     * e sair
      */
     public void executar(){
         int opcao;
@@ -106,8 +116,8 @@ public class InterfaceUsuario {
                 case 4:
                     exibirDadosAnimal();
                     break;
-                case 5:
-                    zoologico.salvarDados();
+                case 5: 
+                    sair();
                     break;
                 default:
                     System.out.println("Opção Inválida!");
